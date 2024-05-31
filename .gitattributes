@@ -54,3 +54,17 @@
 *.rns filter=lfs diff=lfs merge=lfs -text
 *.reason filter=lfs diff=lfs merge=lfs -text
 *.lxo filter=lfs diff=lfs merge=lfs -text
+
+#-- BEGIN OOTB GITIGNORE --#
+# Do not modify contents between BEGIN and END, it will be replaced on upgrade
+#-- ignore everything
+/*
+#-- unignore files that should be source controlled
+.gitattributes
+!.gitignore
+!appConfig.json
+!/src/
+!upgrade*.log
+#-- re-ignore default resources
+/src/phone/resources/Default/**
+#-- END OOTB GITIGNORE --#
