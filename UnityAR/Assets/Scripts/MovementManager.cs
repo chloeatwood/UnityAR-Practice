@@ -197,6 +197,7 @@ public class MovementManager : MonoBehaviour
     [SerializeField] Button Exit;
     [SerializeField] Button Reset;
     [SerializeField] Button GameInfo, Settings;
+    [SerializeField] Button Jump, Sprint, Pause;
 
 //Adding other variables
     [SerializeField] private bool grounded = false;
@@ -266,7 +267,7 @@ public class MovementManager : MonoBehaviour
         
 
         //Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (Input.GetButtonDown("Jump") && grounded)
         {
             if (superCheese.activeSelf) 
             { 
