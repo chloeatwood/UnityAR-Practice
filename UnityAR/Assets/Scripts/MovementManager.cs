@@ -185,22 +185,24 @@ public class MovementManager : MonoBehaviour
     [SerializeField] private Rigidbody PlayerBody;
     [SerializeField] private Transform PlayerCamera;
 
-    //Adding variables
+    //Adding variables floats
     [SerializeField] private float WalkSpeed;
     [SerializeField] private float RunSpeed;
     [SerializeField] private float Sensitivity;
     [SerializeField] private float JumpForce;
     [SerializeField] private float superJump;
+
+    //Adding variables buttons
     [SerializeField] Button StartGame;
     [SerializeField] Button Exit;
     [SerializeField] Button Reset;
     [SerializeField] Button GameInfo, Settings;
+
+//Adding other variables
     [SerializeField] private bool grounded = false;
     [SerializeField] private GameObject superCheese;
     private bool GameIsPaused = false;
     [SerializeField] private GameObject otherSuperCheese;
-
-
 
 
     //Adding input storage
