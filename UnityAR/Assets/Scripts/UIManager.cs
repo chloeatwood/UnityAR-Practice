@@ -11,9 +11,9 @@ using UnityEngine.Audio;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] Button startTimerMode, startExploreMode, Exit, InstructionsButton, BackButtonMainMenu, NextPage, BackPage, Settings;
+    [SerializeField] Button startTimerMode, startExploreMode, Exit, InstructionsButton, BackButtonMainMenu, NextPage, BackPage, Settings, Jump, Sprint, Left, Right, Front, Back;
     [SerializeField] TMP_Text timerText, timerCount, timeElapsed, timeCount, Instructions, Hints, LevelText;
-    [SerializeField] GameObject Background, SettingsCannvas;
+    [SerializeField] GameObject Background, SettingsCannvas, Plane;
     [SerializeField] AudioMixer audioMixer;
 
 
@@ -42,7 +42,12 @@ public class UIManager : MonoBehaviour
         Application.Quit();
 
     }
-
+    
+    //Makes a plane dissappear
+    public void plane()
+    {
+        Plane.gameObject.SetActive(false);
+    }
     public void timerMode()
     {
         timerCount.gameObject.SetActive(true);
@@ -126,4 +131,6 @@ public class UIManager : MonoBehaviour
     {
         audioMixer.SetFloat("volume", volume);
     }
+
+  
 }

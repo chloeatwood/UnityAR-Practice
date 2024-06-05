@@ -267,7 +267,7 @@ public class MovementManager : MonoBehaviour
         
 
         //Jumping
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetKey(KeyCode.Space) && grounded)
         {
             if (superCheese.activeSelf) 
             { 
@@ -334,5 +334,24 @@ public class MovementManager : MonoBehaviour
         Settings.gameObject.SetActive(true);
 
 
+    }
+
+    public void jump()
+    {
+        if (grounded)
+        {
+            if (superCheese.activeSelf)
+            {
+                PlayerBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            }
+            else
+            {
+                PlayerBody.AddForce(Vector3.up * superJump, ForceMode.Impulse);
+            }
+            if (!otherSuperCheese.activeSelf)
+            {
+                PlayerBody.AddForce(Vector3.up * superJump, ForceMode.Impulse);
+            }
+        }
     }
 }
