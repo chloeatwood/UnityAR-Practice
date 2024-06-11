@@ -21,7 +21,6 @@ public class ButtonMovement : MonoBehaviour
     //Adding a couple other things
     [SerializeField] private bool grounded = false;
     [SerializeField] private GameObject superCheese, glowingSuperCheese;
-
     private bool MoveLeft, MoveRight, MoveForward, MoveBackward, sprint;
 
 
@@ -40,6 +39,8 @@ public class ButtonMovement : MonoBehaviour
     void Update()
     {
         
+
+        //Calling movement functions when corresponding button is held down
         if (MoveForward) 
         {
             moveForward();
@@ -181,6 +182,7 @@ public class ButtonMovement : MonoBehaviour
     }
 
 
+    //Pause game function
     public void pauseGame()
     {
         Time.timeScale = 0f;
@@ -194,6 +196,9 @@ public class ButtonMovement : MonoBehaviour
         Left.gameObject.SetActive(false);
 
     }
+
+
+    //Play game function
 
     public void unPauseGame()
     {
@@ -210,6 +215,7 @@ public class ButtonMovement : MonoBehaviour
 
 
 
+    //Jump function. Changed based on cheese colleted
     public void jump()
     {
         if (grounded)

@@ -13,8 +13,9 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] Button startTimerMode, startExploreMode, Exit, InstructionsButton, 
         BackButtonMainMenu, NextPage, BackPage, Settings, Jump, Sprint, Left, Right, 
-        Front, Back;
-    [SerializeField] TMP_Text timerText, timerCount, timeElapsed, timeCount, Instructions, Hints, LevelText;
+        Front, Back, NextPage2, BackPage2;
+    [SerializeField] TMP_Text timerText, timerCount, timeElapsed, timeCount, 
+        Instructions, Hints, ARInstructions;
     [SerializeField] GameObject Background, SettingsCannvas, Plane;
     [SerializeField] AudioMixer audioMixer;
 
@@ -50,6 +51,8 @@ public class UIManager : MonoBehaviour
     {
         Plane.gameObject.SetActive(false);
     }
+
+    //Starts the game in timer mode
     public void timerMode()
     {
         timerCount.gameObject.SetActive(true);
@@ -61,6 +64,8 @@ public class UIManager : MonoBehaviour
         Settings.gameObject.SetActive(false);
     }
 
+
+    //Starts the game in free play mode
     public void freeMode()
     {
         timeElapsed.gameObject.SetActive(true);
@@ -72,6 +77,8 @@ public class UIManager : MonoBehaviour
         Settings.gameObject.SetActive(false);
     }
 
+
+    //Shows the first page of instructions
     public void showingInstructions()
     {
         InstructionsButton.gameObject.SetActive(false);
@@ -80,10 +87,14 @@ public class UIManager : MonoBehaviour
         Background.SetActive(true );
         NextPage.gameObject.SetActive(true);
         Settings.gameObject.SetActive(false);
+        BackPage.gameObject.SetActive(false);
+        BackPage2.gameObject.SetActive(false);
 
 
     }
 
+
+    //Leaves instructions and goes back to main menu
     public void backToMain()
     {
         InstructionsButton.gameObject.SetActive(true);
@@ -95,8 +106,13 @@ public class UIManager : MonoBehaviour
         BackPage.gameObject.SetActive(false);
         SettingsCannvas.SetActive(false);
         Settings.gameObject.SetActive(true);
+        ARInstructions.gameObject.SetActive(false);
+        NextPage2.gameObject.SetActive(false);
+        BackPage2.gameObject.SetActive(false);
     }
 
+
+    //Takes you to the second page of instructions
     public void secondPageInfo()
     {
         BackButtonMainMenu.gameObject.SetActive(true);
@@ -106,8 +122,14 @@ public class UIManager : MonoBehaviour
         Hints.gameObject.SetActive(true);
         Instructions.gameObject.SetActive(false);
         Settings.gameObject.SetActive(false);
+        NextPage2.gameObject.SetActive(true);
+        ARInstructions.gameObject.SetActive (false);
+        BackPage2.gameObject.SetActive(false);
+
     }
 
+
+    //Takes you back a page in the instructions tab
     public void backAPage()
     {
         BackButtonMainMenu.gameObject.SetActive(true);
@@ -120,6 +142,7 @@ public class UIManager : MonoBehaviour
 
     }
 
+    //Opens the game settings
     public void openSettings()
     {
         InstructionsButton.gameObject.SetActive(false);
@@ -129,11 +152,28 @@ public class UIManager : MonoBehaviour
         SettingsCannvas.SetActive(true);
     }
 
+
+    //Sets the volume of the music
     public void setVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
     }
 
-  
+
+    //Takes you to the 3rd page of instructions
+    public void specialARInstructions()
+    {
+        BackButtonMainMenu.gameObject.SetActive(true);
+        Background.SetActive(true);
+        NextPage.gameObject.SetActive(false);
+        BackPage.gameObject.SetActive(false);
+        Hints.gameObject.SetActive(false);
+        Instructions.gameObject.SetActive(false);
+        Settings.gameObject.SetActive(false);
+        NextPage2.gameObject.SetActive(false);
+        BackPage2.gameObject.SetActive(true);
+        ARInstructions.gameObject.SetActive(true);
+
+    }
 
 }

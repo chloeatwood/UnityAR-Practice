@@ -27,7 +27,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTime = 60f;
+        currentTime = 200f;
         timerText.text = currentTime.ToString("f2");
         Time.timeScale = 1f;
     }
