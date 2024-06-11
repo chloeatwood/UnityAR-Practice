@@ -15,21 +15,14 @@ public class ButtonMovement : MonoBehaviour
     [SerializeField] private float WalkSpeed, RunSpeed, JumpForce, SuperJump;
 
     //Adding necessary Buttons
-    
+    [SerializeField] private Button InstructionsButton, Settings, pause, unPause, Front, Back,
+        Right, Left;
 
     //Adding a couple other things
     [SerializeField] private bool grounded = false;
     [SerializeField] private GameObject superCheese, glowingSuperCheese;
-    //[SerializeField] private bool GameIsPaused = false;
 
     private bool MoveLeft, MoveRight, MoveForward, MoveBackward, sprint;
-
-
-    private float xRot;
-
-    private float Sensitivity = 3;
-
-    Vector2 PlayerMouse;
 
 
 
@@ -40,24 +33,12 @@ public class ButtonMovement : MonoBehaviour
     }
 
 
-   /* private void MovePlayerDirection()
-    {
-        if (Time.timeScale == 1)
-        {
-            xRot -= PlayerMouse.y * Sensitivity;
-
-            transform.Rotate(0f, PlayerMouse.x * Sensitivity, 0f);
-            transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-        }
-    }*/
 
 
 
     // Update is called once per frame
     void Update()
     {
-        /*PlayerMouse = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        MovePlayerDirection();*/
         
         if (MoveForward) 
         {
@@ -77,7 +58,15 @@ public class ButtonMovement : MonoBehaviour
         }
     }
 
-
+    //Dedciding whether or not player is on the ground
+    private void OnCollisionEnter(Collision collision)
+    {
+        grounded = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        grounded = false;
+    }
 
     //Sets player direction movement to true or false depending on if button is pressed
     public void DownMoveForward()
@@ -125,11 +114,11 @@ public class ButtonMovement : MonoBehaviour
     {
         if (sprint)
         {
-            transform.Translate(0f, 0f, 1f * RunSpeed * Time.deltaTime);
+            transform.position = transform.position + Camera.main.transform.forward * RunSpeed * Time.deltaTime;
         }
         else
         {
-            transform.Translate(0f, 0f, 1f * WalkSpeed * Time.deltaTime);
+            transform.position = transform.position + Camera.main.transform.forward * WalkSpeed * Time.deltaTime;
         }
         Debug.Log("Clicked");
     }
@@ -138,13 +127,13 @@ public class ButtonMovement : MonoBehaviour
     {
         if (sprint)
         {
-            transform.Translate(0f, 0f, -1f * RunSpeed * Time.deltaTime);
+            transform.position = transform.position + Camera.main.transform.forward * -RunSpeed * Time.deltaTime;
         }
         else
         {
-            transform.Translate(0f, 0f, -1f * WalkSpeed * Time.deltaTime);
+            transform.position = transform.position + Camera.main.transform.forward * -WalkSpeed * Time.deltaTime;
         }
-        
+
         Debug.Log("Clicked");
     }
 
@@ -154,11 +143,11 @@ public class ButtonMovement : MonoBehaviour
     {
         if (sprint)
         {
-            transform.Translate(-1f * RunSpeed * Time.deltaTime, 0f, 0f);
+            transform.position = transform.position + Camera.main.transform.right * -RunSpeed * Time.deltaTime;
         }
         else
         {
-            transform.Translate(-1f * WalkSpeed * Time.deltaTime, 0f, 0f);
+            transform.position = transform.position + Camera.main.transform.right * -WalkSpeed * Time.deltaTime;
         }
         Debug.Log("Clicked");
     }
@@ -169,13 +158,13 @@ public class ButtonMovement : MonoBehaviour
 
         if (sprint)
         {
-            transform.Translate(1f * RunSpeed * Time.deltaTime, 0f, 0f);
+            transform.position = transform.position + Camera.main.transform.right * RunSpeed * Time.deltaTime;
         }
         else
         {
-            transform.Translate(1f * WalkSpeed * Time.deltaTime, 0f, 0f);
+            transform.position = transform.position + Camera.main.transform.right * WalkSpeed * Time.deltaTime;
         }
-        
+
         Debug.Log("Clicked");
     }
 
@@ -191,5 +180,53 @@ public class ButtonMovement : MonoBehaviour
         sprint = false;
     }
 
+
+    public void pauseGame()
+    {
+        Time.timeScale = 0f;
+        InstructionsButton.gameObject.SetActive(true);
+        Settings.gameObject.SetActive(true);
+        unPause.gameObject.SetActive(true);
+        pause.gameObject.SetActive(false);
+        Front.gameObject.SetActive(false);
+        Back.gameObject.SetActive(false);
+        Right.gameObject.SetActive(false);
+        Left.gameObject.SetActive(false);
+
+    }
+
+    public void unPauseGame()
+    {
+        Time.timeScale = 1f;
+        InstructionsButton.gameObject.SetActive(false);
+        Settings.gameObject.SetActive(false);
+        unPause.gameObject.SetActive(false);
+        pause.gameObject.SetActive(true);
+        Front.gameObject.SetActive(true);
+        Back.gameObject.SetActive(true);
+        Right.gameObject.SetActive(true);
+        Left.gameObject.SetActive(true);
+    }
+
+
+
+    public void jump()
+    {
+        if (grounded)
+        {
+            if (superCheese.activeSelf)
+            {
+                Player.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            }
+            else
+            {
+                Player.AddForce(Vector3.up * SuperJump, ForceMode.Impulse);
+            }
+            if (!glowingSuperCheese.activeSelf)
+            {
+                Player.AddForce(Vector3.up * SuperJump, ForceMode.Impulse);
+            }
+        }
+    }
 }
 

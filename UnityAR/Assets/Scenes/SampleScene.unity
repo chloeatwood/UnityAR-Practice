@@ -2357,9 +2357,17 @@ MonoBehaviour:
   RunSpeed: 8
   JumpForce: 5
   SuperJump: 10
+  InstructionsButton: {fileID: 1334703935}
+  Settings: {fileID: 1548538204}
+  pause: {fileID: 1359747425}
+  unPause: {fileID: 1034995266}
+  Front: {fileID: 733279525}
+  Back: {fileID: 291222341}
+  Right: {fileID: 1875528378}
+  Left: {fileID: 703562649}
   grounded: 0
-  superCheese: {fileID: 0}
-  glowingSuperCheese: {fileID: 0}
+  superCheese: {fileID: 373633171}
+  glowingSuperCheese: {fileID: 1602984361}
 --- !u!1 &368768241
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,7 +3937,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 6.35, y: 7.9300003, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.28, y: 2.58, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 136044443}
@@ -9327,8 +9335,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 362968047}
-        m_TargetAssemblyTypeName: MovementManager, Assembly-CSharp
+      - m_Target: {fileID: 362968049}
+        m_TargetAssemblyTypeName: ButtonMovement, Assembly-CSharp
         m_MethodName: jump
         m_Mode: 1
         m_Arguments:
@@ -10933,7 +10941,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1034995267}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 362968049}
+        m_TargetAssemblyTypeName: ButtonMovement, Assembly-CSharp
+        m_MethodName: unPauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1034995267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11150,8 +11170,6 @@ MonoBehaviour:
   Right: {fileID: 1875528378}
   Front: {fileID: 733279525}
   Back: {fileID: 291222341}
-  unPause: {fileID: 1034995266}
-  pause: {fileID: 1359747425}
   timerText: {fileID: 1559506798}
   timerCount: {fileID: 154545518}
   timeElapsed: {fileID: 1071574402}
@@ -12452,7 +12470,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1359747426}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 362968049}
+        m_TargetAssemblyTypeName: ButtonMovement, Assembly-CSharp
+        m_MethodName: pauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1359747426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20581,7 +20611,7 @@ Transform:
   m_GameObject: {fileID: 1781341578}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.95000005, y: 13.75, z: 0}
+  m_LocalPosition: {x: 0.95000005, y: 14.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21115,7 +21145,7 @@ Transform:
   m_GameObject: {fileID: 1827925387}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.46000004, y: 1.5, z: 0.75}
+  m_LocalPosition: {x: 0.46000004, y: 2, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

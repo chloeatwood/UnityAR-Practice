@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] Button startTimerMode, startExploreMode, Exit, InstructionsButton, 
         BackButtonMainMenu, NextPage, BackPage, Settings, Jump, Sprint, Left, Right, 
-        Front, Back, unPause, pause;
+        Front, Back;
     [SerializeField] TMP_Text timerText, timerCount, timeElapsed, timeCount, Instructions, Hints, LevelText;
     [SerializeField] GameObject Background, SettingsCannvas, Plane;
     [SerializeField] AudioMixer audioMixer;
@@ -135,22 +135,5 @@ public class UIManager : MonoBehaviour
     }
 
   
-    public void pauseGame()
-    {
-        Time.timeScale = 0;
-        InstructionsButton.gameObject.SetActive(true);
-        Settings.gameObject.SetActive(true);
-        unPause.gameObject.SetActive(true);
-        pause.gameObject.SetActive(false);
 
-    }
-
-    public void unPauseGame()
-    {
-        Time.timeScale = 1;
-        InstructionsButton.gameObject.SetActive(false);
-        Settings.gameObject.SetActive(false);
-        unPause.gameObject.SetActive(false);
-        pause.gameObject.SetActive(true);
-    }
 }
