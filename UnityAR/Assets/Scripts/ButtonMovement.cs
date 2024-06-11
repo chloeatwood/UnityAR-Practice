@@ -20,9 +20,9 @@ public class ButtonMovement : MonoBehaviour
     //Adding a couple other things
     [SerializeField] private bool grounded = false;
     [SerializeField] private GameObject superCheese, glowingSuperCheese;
-    [SerializeField] private bool GameIsPaused = false;
+    //[SerializeField] private bool GameIsPaused = false;
 
-    private bool MoveLeft, MoveRight, MoveForward, MoveBackward;
+    private bool MoveLeft, MoveRight, MoveForward, MoveBackward, sprint;
 
 
     private float xRot;
@@ -38,6 +38,46 @@ public class ButtonMovement : MonoBehaviour
     {
 
     }
+
+
+   /* private void MovePlayerDirection()
+    {
+        if (Time.timeScale == 1)
+        {
+            xRot -= PlayerMouse.y * Sensitivity;
+
+            transform.Rotate(0f, PlayerMouse.x * Sensitivity, 0f);
+            transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        }
+    }*/
+
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        /*PlayerMouse = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        MovePlayerDirection();*/
+        
+        if (MoveForward) 
+        {
+            moveForward();
+        }
+        if (MoveBackward)
+        {
+            moveBackward();
+        }
+        if (MoveLeft)
+        {
+            moveLeft();
+        }
+        if (MoveRight)
+        {
+            moveRight();
+        }
+    }
+
+
 
     //Sets player direction movement to true or false depending on if button is pressed
     public void DownMoveForward()
@@ -83,13 +123,28 @@ public class ButtonMovement : MonoBehaviour
     //Moves player forward when pressing the forward button
     public void moveForward()
     {
-        Player.velocity += Vector3.forward * WalkSpeed * Time.deltaTime;
+        if (sprint)
+        {
+            transform.Translate(0f, 0f, 1f * RunSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(0f, 0f, 1f * WalkSpeed * Time.deltaTime);
+        }
         Debug.Log("Clicked");
     }
     //Moves player backward when pressing the backwards button
     public void moveBackward()
     {
-        transform.Translate(0f, 0f, -1f * WalkSpeed * Time.deltaTime);
+        if (sprint)
+        {
+            transform.Translate(0f, 0f, -1f * RunSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(0f, 0f, -1f * WalkSpeed * Time.deltaTime);
+        }
+        
         Debug.Log("Clicked");
     }
 
@@ -97,54 +152,44 @@ public class ButtonMovement : MonoBehaviour
     //Moves player left when pressing the left button
     public void moveLeft()
     {
-        transform.Translate(-1f * WalkSpeed * Time.deltaTime, 0f, 0f);
+        if (sprint)
+        {
+            transform.Translate(-1f * RunSpeed * Time.deltaTime, 0f, 0f);
+        }
+        else
+        {
+            transform.Translate(-1f * WalkSpeed * Time.deltaTime, 0f, 0f);
+        }
         Debug.Log("Clicked");
     }
 
     //Moves player right when pressing the right button
     public void moveRight()
     {
-        transform.Translate(1f * WalkSpeed * Time.deltaTime, 0f, 0f);
+
+        if (sprint)
+        {
+            transform.Translate(1f * RunSpeed * Time.deltaTime, 0f, 0f);
+        }
+        else
+        {
+            transform.Translate(1f * WalkSpeed * Time.deltaTime, 0f, 0f);
+        }
+        
         Debug.Log("Clicked");
     }
 
-   /* private void MovePlayerDirection()
+
+    //Setting Sprint to true or false depending on if button is down or not
+    public void sprintDown()
     {
-        if (Time.timeScale == 1)
-        {
-            xRot -= PlayerMouse.y * Sensitivity;
-
-            transform.Rotate(0f, PlayerMouse.x * Sensitivity, 0f);
-            transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-        }
-    }*/
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*PlayerMouse = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        MovePlayerDirection();*/
-
-        if (MoveForward) 
-        {
-            moveForward();
-        }
-        if (MoveBackward)
-        {
-            moveBackward();
-        }
-        if (MoveLeft)
-        {
-            moveLeft();
-        }
-        if (MoveRight)
-        {
-            moveRight();
-        }
+        sprint = true;
     }
 
-    
+    public void sprintUp()
+    {
+        sprint = false;
+    }
+
 }
 
