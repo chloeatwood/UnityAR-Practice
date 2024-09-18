@@ -1,4 +1,4 @@
-A basic mobile AR app that can be installed onto someone's phone to run. Created with Unity and Vuforia.
+A basic mobile AR app that can be installed onto someone's phone to run. Created with Unity and Vuforia. This is an AR implementation of the UnityPractice game that I made.
 
 You play as a mouse and run around a living room in order to collect cheese.
 
